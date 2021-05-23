@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <windows.h>
+#include <direct.h>
+#include <dirent.h>
 #include <sys/stat.h>
 
 struct node
@@ -27,6 +29,17 @@ void delete(node *);
 char* addBefore(char*, char*);
 void showdir(node *);
 char element[100];
+/*---------build hierarchy-----------*/
+void build_hierarchy();
+node* create_node();
+void insert_node(node*, node**, node**);
+node* go_next(node*);
+void display_tree(node *);
+/*-----------save hierarchy-----------*/
+node* findNextParent_havingChild(node *);
+void assignNext(node *);
+void saveHierarchy();
+/*------------------------------------*/
 
 node * add_node(char * data, int markfile)
 {
@@ -502,6 +515,33 @@ void vDrive(struct node *n)
         }
         else if (strcmp(ch, "quit") == 0 && strcmp(ch1, "-v") == 0)
         {
+            DIR *d;
+            char buff[FILENAME_MAX];
+            struct dirent *dir;
+            d = opendir("./that.dumps");
+            _getcwd( buff, FILENAME_MAX );
+            if (d)
+            {
+                while ((dir = readdir(d)) != NULL)
+                {
+                    char *fullpath, *prefix = "/that.dumps/", *suffix = dir->d_name;
+                    if (strcmp(dir->d_name, ".") == 0 || strcmp(dir->d_name, "..") == 0) continue;
+                    snprintf(fullpath, PATH_MAX, "%s/%s/%s", buff, prefix, suffix);
+                    if (remove(fullpath) == 0)
+                    {
+
+                        continue;
+                    }
+                    else
+                    {
+                        printf("%s is not deleted.\n", dir->d_name);
+                    }
+
+                }
+                closedir(d);
+            }
+
+            printf("Files deleted successfully.\n");
             break;
         }
         else
