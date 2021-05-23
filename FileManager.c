@@ -29,17 +29,6 @@ void delete(node *);
 char* addBefore(char*, char*);
 void showdir(node *);
 char element[100];
-/*---------build hierarchy-----------*/
-void build_hierarchy();
-node* create_node();
-void insert_node(node*, node**, node**);
-node* go_next(node*);
-void display_tree(node *);
-/*-----------save hierarchy-----------*/
-node* findNextParent_havingChild(node *);
-void assignNext(node *);
-void saveHierarchy();
-/*------------------------------------*/
 
 node * add_node(char * data, int markfile)
 {
