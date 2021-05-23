@@ -14,7 +14,7 @@ Generic tree is a tree in which each node can have many children or nodes. Each 
 
 The nodes representing the folders are present only during the runtime. The hierarchy is presented as if it stored in a drive (virtual drive) but actually it is not stored in any drive. For the files, it gets stored in the memory in folder called that.dumps which is created (on the same folder where the FileManager.c file is saved in secondary memory of the user) during the runtime to store all the files created during the execution of the program irrespective of their presence in same or different directory/folder. All the files are dumped into that.dumps so it necessary to mention different filename for each file in other directories whereas same foldername can be repeated in other directories.
 
-While making a file, an editor opens up to edit the file. Here I have used Notepad from Windows OS as an editor. Therefore, user can write text files and save it in the virtual directory.
+While making a file, an editor opens up to edit the file. Here I have used Notepad from Windows OS as an editor. Therefore, user can write text files and save it in the virtual directory. When the user comes out of the virtual drive, all files that were created in that.dumps during execution gets deleted to prepare that.dumps folder for a fresh start.
 
 ## Commands
 
